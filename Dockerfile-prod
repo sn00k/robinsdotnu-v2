@@ -1,0 +1,19 @@
+FROM mhart/alpine-node:12.7.0
+
+WORKDIR /app
+
+RUN yarn global add http-server
+
+# install and cache app dependencies
+COPY package.json yarn.lock ./
+
+RUN yarn
+RUN yarn global add @vue/cli
+
+COPY . .
+
+RUN yarn build
+RUN cp dist/index.html dist/404.html
+RUN rm -rf node_modules
+
+CMD http-server ./dist -p 3000 -d false

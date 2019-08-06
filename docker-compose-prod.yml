@@ -1,0 +1,21 @@
+version: '3'
+networks:
+  default:
+    external:
+      name: nginx-proxy
+services:
+  web:
+    container_name: web
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile-prod
+    ports:
+     - "5000:3000"
+    expose:
+       - "3000"
+    environment:
+      - VIRTUAL_HOST=robins.nu,www.robins.nu
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_HOST=robins.nu,www.robins.nu
+      - LETSENCRYPT_EMAIL=hello@robins.nu
