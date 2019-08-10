@@ -4,8 +4,16 @@
     <div class="content">
       <section class="description">
         <h1>Hi, I'm Robin!</h1>
-        <p><s>Fullstack</s>Software Developer from Sweden</p>
-        <p>Schooled in C# .NET, currently <i>kind of</i> in love with Javascript and Vue.js. Worked with a bit of everything.</p>
+        <span><s>Fullstack</s>Software Developer from Sweden, schooled in C# .NET</span>
+        <p>Here are some of the tools that I'm currently enjoying working with</p>
+        <ul class="brands">
+          <li><font-awesome-icon :icon="['fab', 'js-square']" size="2x" /></li>
+          <li><font-awesome-icon :icon="['fab', 'vuejs']" size="2x" /></li>
+          <li><font-awesome-icon :icon="['fab', 'react']" size="2x" /></li>
+          <li><font-awesome-icon :icon="['fab', 'php']" size="2x" /></li>
+          <li><font-awesome-icon :icon="['fab', 'docker']" size="2x" /></li>
+          <li><font-awesome-icon :icon="['fab', 'apple']" size="2x" /></li>
+        </ul>
         <p>Passionate about programming, technology, football, beer and this list is getting too long. Why don't you get in touch with me so we can talk more?</p>
       </section>
       <section class="contact">
@@ -47,15 +55,18 @@ export default {
   color: #2c3e50;
   text-decoration: none;
   margin: 0 20px;
-  &:nth-child(2) {
-    color: #4875b4
-  }
 }
 .content {
-  max-width: 50%;
+  width: 40%;
+  max-width: 800px;
   margin: 20px auto;
   @media (max-width: 1024px) {
     max-width: 80%;
   }
+}
+.brands {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
 }
 </style>
