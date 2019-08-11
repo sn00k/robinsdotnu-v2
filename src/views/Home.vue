@@ -61,12 +61,18 @@ export default {
   max-width: 800px;
   margin: 20px auto;
   @media (max-width: 1024px) {
-    max-width: 80%;
+    width: 80%;
   }
 }
 .brands {
   list-style: none;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  padding: 0;
+  width: 60%;
+  margin: 0 auto;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 }
 </style>
