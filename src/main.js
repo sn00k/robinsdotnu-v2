@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import VueScrollTo from 'vue-scrollto'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import {
   faLinkedin,
   faGithub,
@@ -18,6 +19,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(
   faEnvelope,
+  faArrowDown,
   faLinkedin,
   faGithub,
   faJsSquare,
@@ -29,6 +31,8 @@ library.add(
   )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+Vue.use(VueScrollTo)
 
 Vue.config.productionTip = false
 
