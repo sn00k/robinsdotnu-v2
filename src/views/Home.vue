@@ -39,7 +39,26 @@
 <script>
 
 export default {
-  name: 'home'
+  name: 'home',
+  mounted () {
+    this.arrow = document.querySelectorAll('.arrow')[0]
+    window.addEventListener("scroll", this.scrollFunction);
+  },
+  data () {
+    return {
+      arrow: null
+    }
+  },
+  methods: {
+    scrollFunction () {
+      let y = window.scrollY;
+      if (y > 140) {
+        this.arrow.style.display = 'none'
+      } else {
+        this.arrow.style.display = 'block'
+      }
+    }
+  }
 }
 </script>
 
