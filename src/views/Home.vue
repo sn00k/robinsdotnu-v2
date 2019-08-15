@@ -42,7 +42,7 @@ export default {
   name: 'home',
   mounted () {
     this.arrow = document.querySelectorAll('.arrow')[0]
-    window.addEventListener("scroll", this.scrollFunction);
+    window.addEventListener('scroll', this.scrollFunction)
   },
   data () {
     return {
@@ -52,11 +52,14 @@ export default {
   methods: {
     scrollFunction () {
       let y = window.scrollY;
-      if (y > 140) {
+      if (y > 140 || this.isMobile()) {
         this.arrow.style.display = 'none'
       } else {
         this.arrow.style.display = 'block'
       }
+    },
+    isMobile () {
+      return window.innerWidth <= 767 ? true : false
     }
   }
 }
