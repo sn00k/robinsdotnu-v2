@@ -22,7 +22,6 @@ const router = new Router({
 
 router.beforeResolve((to, from, next) => {
   if (to.name) {
-    console.log('test1')
     NProgress.start()
   }
   next()
