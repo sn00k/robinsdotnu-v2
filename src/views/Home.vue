@@ -3,7 +3,10 @@
     <section class="hero">
       <div>
         <img class="fullscreen-gif" v-show="srcLoaded" :src="src" :load="onSrcLoaded()" alt="Hackerman gif montage" />
-        <p v-if="!srcLoaded"><font-awesome-icon icon="circle-notch" size="3x" spin /></p>
+        <div v-if="!srcLoaded">
+          <p><font-awesome-icon icon="circle-notch" size="3x" spin /></p>
+          <p class="loading-text">Loading...</p>
+        </div>
         <div class="arrow bounce">
           <a href="#" v-scroll-to="'.content'"><font-awesome-icon icon="arrow-down" size="2x" /></a>
         </div>
@@ -40,23 +43,9 @@
 </template>
 
 <script>
-import NProgress from 'nprogress'
-import '../../node_modules/nprogress/nprogress.css'
-
 export default {
   name: 'home',
-  beforeCreate () {
-    NProgress.configure({ showSpinner: false })
-    NProgress.start()
-  },
   mounted () {
-    this.$nextTick(function() {
-      if (this.srcLoaded) {
-        NProgress.done()
-      } else {
-        NProgress.inc()
-      }
-    })
     this.arrow = document.querySelectorAll('.arrow')[0]
     window.addEventListener('scroll', this.scrollFunction)
   },
@@ -67,18 +56,9 @@ export default {
       srcLoaded: false
     }
   },
-  watch: {
-    srcLoaded: function(val) {
-      if (val === true) {
-        NProgress.done()
-      }
-    }
-  },
   methods: {
     onSrcLoaded() {
-      setTimeout(() => {
-        this.srcLoaded = true
-      }, 2000);
+      this.srcLoaded = true
     },
     scrollFunction () {
       let y = window.scrollY;
@@ -96,7 +76,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$text-standard-black: #2c3e50;
+$text-standard-black: #040405;
+.loading-text {
+  font-style: italic;
+}
 .fullscreen-gif {
   width: 100vw;
   height: 100vh;
