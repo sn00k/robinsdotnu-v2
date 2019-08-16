@@ -4,7 +4,7 @@ import router from './router'
 import VueScrollTo from 'vue-scrollto'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faEnvelope, faArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faArrowDown, faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 import {
   faLinkedin,
   faGithub,
@@ -20,6 +20,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(
   faEnvelope,
   faArrowDown,
+  faCircleNotch,
   faLinkedin,
   faGithub,
   faJsSquare,

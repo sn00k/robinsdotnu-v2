@@ -1,9 +1,12 @@
 <template>
   <div>
     <section class="hero">
-      <img class="fullscreen-gif" src="https://media.giphy.com/media/l46C6sdSa5DVSJnLG/giphy.gif" alt="Hackerman gif montage" />
-      <div class="arrow bounce">
-        <a href="#" v-scroll-to="'.content'"><font-awesome-icon icon="arrow-down" size="2x" /></a>
+      <div>
+        <img class="fullscreen-gif" v-show="srcLoaded" :src="src" :load="onSrcLoaded()" alt="Hackerman gif montage" />
+        <p v-if="!srcLoaded"><font-awesome-icon icon="circle-notch" size="3x" spin /></p>
+        <div class="arrow bounce">
+          <a href="#" v-scroll-to="'.content'"><font-awesome-icon icon="arrow-down" size="2x" /></a>
+        </div>
       </div>
     </section>
     <div class="content">
@@ -37,19 +40,46 @@
 </template>
 
 <script>
+import NProgress from 'nprogress'
+import '../../node_modules/nprogress/nprogress.css'
 
 export default {
   name: 'home',
+  beforeCreate () {
+    NProgress.configure({ showSpinner: false })
+    NProgress.start()
+  },
   mounted () {
+    this.$nextTick(function() {
+      if (this.srcLoaded) {
+        NProgress.done()
+      } else {
+        NProgress.inc()
+      }
+    })
     this.arrow = document.querySelectorAll('.arrow')[0]
     window.addEventListener('scroll', this.scrollFunction)
   },
   data () {
     return {
-      arrow: null
+      arrow: null,
+      src: 'https://media.giphy.com/media/l46C6sdSa5DVSJnLG/giphy.gif',
+      srcLoaded: false
+    }
+  },
+  watch: {
+    srcLoaded: function(val) {
+      if (val === true) {
+        NProgress.done()
+      }
     }
   },
   methods: {
+    onSrcLoaded() {
+      setTimeout(() => {
+        this.srcLoaded = true
+      }, 2000);
+    },
     scrollFunction () {
       let y = window.scrollY;
       if (y > 140 || this.isMobile()) {
